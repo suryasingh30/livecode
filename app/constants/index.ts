@@ -1,4 +1,4 @@
-export const sidebarLink = [
+export const sidebarLinks = [
     {
         label: 'Home',
         route: '/',

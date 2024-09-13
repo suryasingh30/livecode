@@ -78,6 +78,15 @@
   color: white;
 }
 
+.cl-socialButtonsBlockButtonText {
+  filter: invert(1);
+}
+
+.cl-formFieldInput {
+  color: #ffffff;
+  background-color: #565761
+}
+
 /* =============================== */
 
 @layer utilities {

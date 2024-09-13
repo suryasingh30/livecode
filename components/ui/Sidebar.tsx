@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { sidebarLink } from '@/app/constants'
+import { sidebarLinks } from '@/app/constants'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils';
 
@@ -11,7 +11,7 @@ export default function Sidebar() {
   return (
     <section className='sticky left-0 top-0 flex h-screen w-fit flex-col justify-between bg-dark-1 p-6 pt-28 text-white max-sm:hidden lg:w-[264px]'>
         <div className='flex flex- flex-col gep-6'>
-            {sidebarLink.map((link) => {
+            {sidebarLinks.map((link) => {
                 const isActive = pathname === link.route || pathname.startsWith(`${link.route}/`);
 
                 return (
