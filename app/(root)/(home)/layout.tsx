@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import Sidebar from '@/components/ui/Sidebar';
-import Navbar from '@/components/ui/Navbar';
+import Sidebar from '@/components/Sidebar';
+import Navbar from '@/components/Navbar';
 
 function HomeLayout({children} : {children: ReactNode}) {
   return (
