@@ -12,6 +12,8 @@ import { useToast } from '@/hooks/use-toast'
 import { Textarea } from './ui/textarea'
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
+import { Input } from './ui/input'
+import Loader from './Loader';
 
 const MeetingTypeList = () => {
 
@@ -73,6 +75,8 @@ const MeetingTypeList = () => {
             })
         }
     }
+
+  if (!client || !user) return <Loader />;
 
     const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`;
 
@@ -162,6 +166,21 @@ const MeetingTypeList = () => {
             buttonText="Start Meeting"
             handleClick={createMeeting}
         />
+
+        <MeetingModal 
+            isOpen={meetingState === 'isJoiningMeeting'}
+            onClose={() => setMeetingState(undefined)}
+            title="Type the link here"
+            className="text-center"
+            buttonText="Join Meeting"
+            handleClick={()=>router.push(`http://${values.Link}`)}
+        >
+        <Input
+            className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+            placeholder='Meeting link'
+            onChange={(e)=>setValues({...values, Link: e.target.value})}
+        />
+        </MeetingModal>
 
     </section>
   )

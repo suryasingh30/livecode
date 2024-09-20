@@ -1,9 +1,9 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Define the createRouteMatcher function
-const createRouteMatcher = (routes: string[]) => (req: any) => {
-  return routes.some((route) => req.url?.startsWith(route));
-};
+// const createRouteMatcher = (routes: string[]) => (req: any) => {
+//   return routes.some((route) => req.url?.startsWith(route));
+// };
 
 const protectedRoute = createRouteMatcher([
   '/',
