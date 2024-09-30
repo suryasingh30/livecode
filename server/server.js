@@ -14,7 +14,7 @@ const io = new Server(server, {
     }
 })
 
-const PORT = 3000;
+const PORT = process.env.PORT || 5000
 
 app.get('/', function(req,res){
     res.send("hehe babu")
@@ -69,10 +69,65 @@ io.on('connection', function (socket) {
         })
 
         // send latest code changes to this user when joined to existing room
+        if(room in roomID_to_Code_Map){
+            io.to(socket.id).emit("o language change", {languageUsed: roomID_to_Code_Map[roomId].languageUsed})
+            io.to(socket.id).emit("on code change", {code:roomID_to_Code_Map[roomId].code})
+        }
+
+        // /alerting other users in room tha new user joined
+        socket.in(roomId).emit("new member joined", {
+            username
+        })
+
+    })
+
+    // for other users in room to view the changes
+    socket.on("update lnguage",({roomId, languageUsed}) =>  {
+        if(roomId in roomID_to_Code_Map){
+            roomID_to_Code_Map[roomId]['languageUsed'] = languageUsed
+        }
+        else{
+            roomID_to_Code_Map[roomId] = {languageUsed}
+        }
+    })
+
+    // for user editing the code o reflect on there screen
+    socket.on("sycing the language", ({roomId}) => {
+        if(roomId in roomID_to_Code_Map)
+        {
+            socket.in(roomId).emit("on lanuage change",{languageUsed: roomID_to_Code_Map[roomId].languageUsed})
+        }
+    })
+
+    // for other users in room to iew the changes
+    socket.on("update code", ({roomId, code}) => {
+        if(roomId in roomID_to_Code_Map)
+        {
+            roomID_to_Code_Map[roomId]['code'] = code
+        }
+        else
+        {
+            roomID_to_Code_Map[roomId] = {code}
+        }
+    })
+
+    // for user editing he code too reflect on ther screenn
+    socket.on("syncing the code", ({roomId}) => {
+        if(roomId in roomID_to_Code_Map)
+        {
+            socket.in(roomId).emit("on code change", {code:roomID_to_Code_Map[roomId].code})
+        }
+    })
+
+    socket.on("leave room", ({roomId}) => {
+        socket.leave(roomId)
+        updateUserlistandCodemap(io, socket, roomId)
+    })
+
+    socket.on("diconnect", function(){
+        console.log('A user disconnected');
     })
 })
-
-
 
 app.listen(PORT, ()=>{
     console.log('local host 3000');
