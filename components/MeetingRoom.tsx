@@ -19,6 +19,9 @@ import React, { useState } from 'react';
 import { LayoutList, Loader, Users } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import EndCallButton from './EndCallButton';
+const [code, setCode] = useState({
+  value: ''
+});
 
 // iski jarurat nahi hai ig
 // type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
@@ -48,6 +51,9 @@ const MeetingRoom = () => {
                 alt="Your Photo"
                 className="h-full w-full object-cover rounded-lg"
               />
+              <textarea onChange={(e) => setCode({...code, value: e.target.value})}>
+
+              </textarea>
             </div>
           </div>
 
