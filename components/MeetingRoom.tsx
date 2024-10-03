@@ -5,7 +5,7 @@ import {
   CallParticipantsList,
   CallStatsButton,
   PaginatedGridLayout,
-  SpeakerLayout,
+  // SpeakerLayout,
   useCallStateHooks,
 } from '@stream-io/video-react-sdk';
 import React, { useState } from 'react';
@@ -19,13 +19,16 @@ import { useUser } from '@clerk/nextjs'
 //   DropdownMenuSeparator,
 //   DropdownMenuTrigger,
 // } from '@/components/ui/dropdown-menu';
-import { LayoutList, Loader, Users } from 'lucide-react';
+import { Loader, Users } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import EndCallButton from './EndCallButton';
 
 // type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
+interface MeetingRoomProps {
+  meetingId: string; 
+}
 
-const MeetingRoom = () => {
+const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
   const { user } = useUser();
   const searchParams = useSearchParams();
   const isPersonalRoom = !!searchParams.get('personal');
@@ -36,7 +39,9 @@ const MeetingRoom = () => {
   const router = useRouter();
 
   const username = user?.username ? user.username : 'Guest';
-  const meetingId = user?.id || 'Guest';
+  // const meetingId = user?.id || 'Guest';
+
+  console.log("Meeting room: " + meetingId);
 
   if (callingState !== CallingState.JOINED) return <Loader />;
 
@@ -55,7 +60,7 @@ const MeetingRoom = () => {
                 className="h-full w-full object-cover rounded-lg"
               /> */}
               <Socketwrapper username={username} meetingId={meetingId}>
-                <Room socket={Socketwrapper} username={username} meetingId={meetingId}/>
+                <Room socket={Socketwrapper} username={username} meetingId={meetingId} useRouter = {useRouter}/>
               </Socketwrapper>
             </div>
           </div>
