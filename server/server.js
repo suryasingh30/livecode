@@ -1,11 +1,9 @@
 const express = require('express');
 const http = require('http');
 const {Server} = require('socket.io');
-const cors = require('cors');
-
-app.use(cors());
 const app = express();
 app.use(express.json());
+const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
@@ -29,12 +27,12 @@ async function getUsersinRoom(roomId, io){
     socketList.forEach((each => {
         (each in socketID_to_Users_Map) && userslist.push(socketID_to_Users_Map[each].username)
     }))
-
+    
 return usersList
 }
 
 async function updateUserlistandCodemap(io, socket, roomId){
-    socket.in(roomId).emit("member left", {username: socketID_to_Users_Mapp[socket.id].username})
+    socket.in(roomId).emit("member left", {username: socketID_to_Users_Map[socket.id].username})
 
     // update user list
     delete socketID_to_Users_Map[socket.id]
@@ -130,5 +128,5 @@ io.on('connection', function (socket) {
 })
 
 app.listen(PORT, ()=>{
-    console.log('local host 3000');
+    console.log('local host 5000');
 })

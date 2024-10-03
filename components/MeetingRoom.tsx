@@ -9,6 +9,9 @@ import {
   useCallStateHooks,
 } from '@stream-io/video-react-sdk';
 import React, { useState } from 'react';
+import Socketwrapper from '@/components/SocketWrapper';
+import Room from '@/components/Room';
+import { useUser } from '@clerk/nextjs'
 // import {
 //   DropdownMenu,
 //   DropdownMenuContent,
@@ -19,14 +22,11 @@ import React, { useState } from 'react';
 import { LayoutList, Loader, Users } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import EndCallButton from './EndCallButton';
-const [code, setCode] = useState({
-  value: ''
-});
 
-// iski jarurat nahi hai ig
 // type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
 
 const MeetingRoom = () => {
+  const { user } = useUser();
   const searchParams = useSearchParams();
   const isPersonalRoom = !!searchParams.get('personal');
   // const [layout, setLayout] = useState<CallLayoutType>('grid')
@@ -34,6 +34,9 @@ const MeetingRoom = () => {
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
   const router = useRouter();
+
+  const username = user?.username ? user.username : 'Guest';
+  const meetingId = user?.id || 'Guest';
 
   if (callingState !== CallingState.JOINED) return <Loader />;
 
@@ -45,15 +48,15 @@ const MeetingRoom = () => {
           {/* Left Side (4x3 Grid) IDE */}
           <div className="col-span-3 row-span-4 bg-gray-800 rounded-lg p-4">
             {/* ide here */}
-            <div className="h-full w-full bg-blue-500 flex items-center justify-center rounded-lg">
-              <img
+            <div>
+              {/* <img
                 src="/icons/logo.svg"
                 alt="Your Photo"
                 className="h-full w-full object-cover rounded-lg"
-              />
-              <textarea onChange={(e) => setCode({...code, value: e.target.value})}>
-
-              </textarea>
+              /> */}
+              <Socketwrapper username={username} meetingId={meetingId}>
+                <Room socket={Socketwrapper} username={username} meetingId={meetingId}/>
+              </Socketwrapper>
             </div>
           </div>
 

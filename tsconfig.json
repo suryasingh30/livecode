@@ -22,6 +22,6 @@
     },
     "types": ["@clerk/nextjs", "@stream-io/video-react-sdk"] // Combine types here
   },
-  "include": ["global.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Room.jsx"],
+  "include": ["global.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Room.jsx", "components/SocketWrapper.js"],
   "exclude": ["node_modules"]
 }
