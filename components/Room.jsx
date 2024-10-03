@@ -2,6 +2,7 @@ import AceEditor from "react-ace";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router"; // Use Next.js router
 import { toast } from "@/hooks/use-toast";
+import '@/components/roomCSS/Room.css';
 
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/mode-javascript";
