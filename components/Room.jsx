@@ -148,7 +148,7 @@ export default function Room({ socket, username, meetingId, useRouter}) {
         className="roomCodeEditor"
         mode={language}
         keyboardHandler={codeKeybinding}
-        theme="monokai"
+        theme="dracula"
         name="collabEditor"
         width="auto"
         height="auto"
