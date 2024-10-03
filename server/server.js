@@ -40,6 +40,7 @@ async function getUsersinRoom(roomId, io) {
 
 // Function to update user list and code map when a user leaves
 async function updateUserlistandCodemap(io, socket, roomId) {
+  console.log(roomId);
   socket.to(roomId).emit("member left", { username: socketID_to_Users_Map[socket.id].username });
 
   // Update user list
@@ -54,7 +55,7 @@ async function updateUserlistandCodemap(io, socket, roomId) {
 
 // Handle socket.io connections
 io.on('connection', function (socket) {
-  console.log('A user connected', socket.id);
+  console.log('A user connected here', socket.id);
 
   // When a user joins a room
   socket.on("when a user joins", async ({ roomId, username }) => {
