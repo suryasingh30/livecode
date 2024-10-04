@@ -4,6 +4,7 @@ const { Server } = require('socket.io');
 const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 const server = http.createServer(app);
 
@@ -55,11 +56,11 @@ async function updateUserlistandCodemap(io, socket, roomId) {
 
 // Handle socket.io connections
 io.on('connection', function (socket) {
-  console.log('A user connected here', socket.id);
+  // console.log('A user connected here', socket.id);
 
   // When a user joins a room
   socket.on("when a user joins", async ({ roomId, username }) => {
-    console.log("username:", username);
+    // console.log("username:", username);
     socketID_to_Users_Map[socket.id] = { username };
     socket.join(roomId);
 
