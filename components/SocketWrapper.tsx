@@ -9,14 +9,14 @@ interface SocketWrapperProps {
   onError?: (message: string) => void; // Optional error callback
 }
 
-function addPropsToReactElement(element: ReactNode, props: any) {
+function addPropsToReactElement(element: ReactNode, props: object) {
   if (React.isValidElement(element)) {
     return React.cloneElement(element, props);
   }
   return element;
 }
 
-function addPropsToChildren(children: ReactNode, props: any) {
+function addPropsToChildren(children: ReactNode, props: object) {
   if (!Array.isArray(children)) {
     return addPropsToReactElement(children, props);
   }
@@ -38,14 +38,14 @@ export default function SocketWrapper({
       socket.emit("user joined", { roomId: meetingId, username });
     } else {
       // Call onError callback if provided
-      onError ? onError("No username or meeting ID provided") : toast({ title: "Error", description: "No username or meeting ID provided" });
+      onError
+        ? onError("No username or meeting ID provided")
+        : toast({ title: "Error", description: "No username or meeting ID provided" });
     }
   }, [socket, username, meetingId, onError]);
 
   return username ? (
-    <div>
-      {addPropsToChildren(children, { socket, username })}
-    </div>
+    <div>{addPropsToChildren(children, { socket, username })}</div>
   ) : (
     <div className="room">
       <h2>No username provided. Please use the form to join the room.</h2>
