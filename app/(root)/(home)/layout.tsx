@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Live Code",
+  title: "Interview Nest",
   description: "Web Interview Platform",
   icons: {
     icon: '/icons/logo.svg'
@@ -25,6 +25,9 @@ function HomeLayout({children} : {children: ReactNode}) {
                 </div>
             </section>
         </div>
+        <>
+        <div className="">Hello world</div>
+        </>
     </main>
   )
 }

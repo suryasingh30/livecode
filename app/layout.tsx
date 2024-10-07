@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Live Code",
+  title: "Interview Nest",
   description: "Web Interview Platform",
   icons: {
     icon: '/icons/logo.svg'
