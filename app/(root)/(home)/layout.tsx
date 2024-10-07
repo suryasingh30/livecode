@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import Sidebar from '@/components/Sidebar';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,7 +27,9 @@ function HomeLayout({children} : {children: ReactNode}) {
             </section>
         </div>
         <>
-        <div className="">Hello world</div>
+        <div className="flex">
+          <Footer/>
+        </div>
         </>
     </main>
   )
