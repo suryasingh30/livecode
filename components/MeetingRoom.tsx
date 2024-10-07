@@ -41,7 +41,7 @@ const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
       <div className="relative flex size-full items-center justify-center">
         {/* Grid layout for meeting room */}
-        <div className="flex size-full max-w-[1000px] items-center grid-cols-5 gap-4">
+        <div className="flex size-full max-w-[1000px] items-center grid grid-cols-5 gap-4">
           {/* Left Side (4x3 Grid) IDE */}
           <div className="col-span-3 row-span-4 bg-gray-800 rounded-lg p-4">
             {/* ide here */}
