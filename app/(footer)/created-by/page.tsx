@@ -43,7 +43,7 @@ const teamMembers: TeamMemberProps[] = [
 
 // TeamMember component definition
 const TeamMember: React.FC<TeamMemberComponentProps> = ({ member }) => (
-  <div className="flex flex-col items-center justify-center bg-gray-800 p-6 rounded-lg">
+  <div className="flex flex-col items-center justify-center bg-gray-800 p-4 sm:p-6 rounded-lg transition-all duration-300 hover:shadow-lg">
     <Image 
       src={member.image} 
       alt={member.name}
@@ -52,24 +52,24 @@ const TeamMember: React.FC<TeamMemberComponentProps> = ({ member }) => (
       height={128}
       priority
     />
-    <p className="text-white mt-4 text-xl">{member.name}</p>
+    <p className="text-white mt-4 text-lg sm:text-xl">{member.name}</p>
     <a 
       href={member.linkedIn} 
       target="_blank"
-      className="text-blue-500 hover:underline mt-2 text-xl"
+      className="text-blue-500 hover:underline mt-2 text-base sm:text-lg"
       rel="noopener noreferrer"
     >
       LinkedIn
     </a>
-    <p className="text-white text-center mt-4">{member.description}</p>
+    <p className="text-white text-center mt-2 text-sm sm:text-base">{member.description}</p>
   </div>
 );
 
 // AboutPage component definition
 const AboutPage: React.FC = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-900">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-2 p-4 sm:grid-cols-1">
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 p-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {teamMembers.map((member, index) => (
           <TeamMember key={index} member={member} />
         ))}
