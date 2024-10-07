@@ -16,6 +16,7 @@ import "ace-builds/src-noconflict/ext-searchbox";
 
 export default function Room({ socket, username, meetingId, useRouter}) {
   const router = useRouter(); // Initialize the router
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
   const [, setFetchedUsers] = useState([]);
   const [fetchedCode, setFetchedCode] = useState("");
   const [language, setLanguage] = useState("javascript");
@@ -23,6 +24,13 @@ export default function Room({ socket, username, meetingId, useRouter}) {
 
   const languagesAvailable = ["javascript", "c_cpp"];
   const codeKeybindingAvailable = ["default", "emacs"];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(timer); // Clean up the interval
+  }, []);
 
   function onChange(newValue) {
     setFetchedCode(newValue);
@@ -136,6 +144,15 @@ export default function Room({ socket, username, meetingId, useRouter}) {
               ))}
             </select>
           </div> */}
+
+      
+        </div>
+        <div className="meetingInfo">
+          <p><strong>Meeting ID:</strong> {meetingId}</p>
+        </div>
+         {/* Display Current Time */}
+         <div className="meetingTime">
+          <p><strong>Current Time:</strong> {currentTime}</p>
         </div>
 
         {/* <button className="roomSidebarBtn" onClick={handleLeave}>
