@@ -4,31 +4,36 @@
     gap: 10px;
     min-height: 85vh;
     padding: 10px 10px 20px;
+  
 }
 
 .roomSidebar {
     display: flex;
     flex-direction: column;
+    max-width: 150px;
     gap: 10px;
 }
-
+.roomCodeEditor {
+    flex: 1; /* Take up the remaining space */
+    width: calc(100% - 150px); /*Make the editor take up more space */
+   
+}
 .languageFieldWrapper {
     padding: 2px 6px;
-    background-color: #0D78F9;
+    background-color:white;
     border-radius: 5px;
 }
 
 .languageField {
     padding: 6px 10px;
-    background-color: #0D78F9;
+    background-color: white;
+    color: black;
     border: none;
     outline: none;
     text-transform: capitalize;
 }
 
-.roomCodeEditor {
-    flex: 1;
-}
+
 
 .roomSidebarCopyBtn {
     font-size: 75%;

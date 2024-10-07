@@ -52,18 +52,19 @@ const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
         </div>
        
       </header>
-      <div className="relative flex size-full items-center justify-center">
+      <div className="relative flex size-full items-center mt-5 ">
         {/* Grid layout for meeting room */}
-        <div className="flex size-full max-w-[1000px] items-center grid grid-cols-5 gap-4">
+        <div className="flex size-full max-w-[1300px] items-center grid grid-cols-5 gap-4">
           {/* Left Side (4x3 Grid) IDE */}
           <div className="col-span-4 row-span-4 bg-gray-800 rounded-lg p-4">
             {/* ide here */}
             <div>
               {/* <img
-                src="/icons/logo.svg"
+                src="/icons/logo1.svg"
                 alt="Your Photo"
-                className="h-full w-full object-cover rounded-lg"
-              /> */}
+                className="h-10 w-10 object-contain"
+              />
+               <span className="text-xl font-semibold">Interview Nest</span> */}
               <Socketwrapper username={username} meetingId={meetingId}>
                 <Room socket={Socketwrapper} username={username} meetingId={meetingId} useRouter = {useRouter}/>
               </Socketwrapper>
