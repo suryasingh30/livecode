@@ -127,7 +127,7 @@ export default function Room({ socket, username, meetingId, useRouter}) {
             </select>
           </div>
 
-          <div className="languageFieldWrapper">
+          {/* <div className="languageFieldWrapper">
             <select className="languageField" value={codeKeybinding} onChange={handleCodeKeybindingChange}>
               {codeKeybindingAvailable.map((eachKeybinding) => (
                 <option key={eachKeybinding} value={eachKeybinding}>
@@ -135,7 +135,7 @@ export default function Room({ socket, username, meetingId, useRouter}) {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
         </div>
 
         {/* <button className="roomSidebarBtn" onClick={handleLeave}>
