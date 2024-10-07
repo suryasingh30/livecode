@@ -31,18 +31,17 @@ export default function SocketWrapper({
   meetingId,
   onError,
 }: SocketWrapperProps) {
-  const socket: Socket = io(process.env.REACT_APP_WE_SOCKET_URL || "http://localhost:5000");
+  const socket: Socket = io("https://spotted-colorful-carbon.glitch.me", {
+    path: "/socket.io/",
+  });
+  
 
   useEffect(() => {
     if (username && meetingId) {
-      socket.emit("user joined", { roomId: meetingId, username });
-    } else {
-      // Call onError callback if provided
-      onError
-        ? onError("No username or meeting ID provided")
-        : toast({ title: "Error", description: "No username or meeting ID provided" });
+      socket.emit("when a user joins", { roomId: meetingId, username });
     }
-  }, [socket, username, meetingId, onError]);
+  }, [socket, username, meetingId]);
+  
 
   return username ? (
     <div>{addPropsToChildren(children, { socket, username })}</div>
