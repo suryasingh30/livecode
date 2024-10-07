@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className='w-full bg-[#1a1a2e] p-6 text-white'>
+    <footer className='w-full bg-[#0e2645] p-6 text-white'>
       <div className='flex justify-around'>
         <Link href='/created-by' className='text-white font-bold hover:underline'>
           Created By
