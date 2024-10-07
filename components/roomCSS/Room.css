@@ -34,7 +34,13 @@
 }
 
 
-
+.meetingInfo, .meetingTime {
+   
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+}
 .roomSidebarCopyBtn {
     font-size: 75%;
     font-weight: bold;
