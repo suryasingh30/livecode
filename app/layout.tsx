@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Interview Nest",
   description: "Web Interview Platform",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logo1.svg'
   }
 };
 
