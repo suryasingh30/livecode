@@ -11,9 +11,8 @@
 .roomSidebar {
     display: flex;
     flex-direction: column;
-    max-width: 150px; /* Set a max width for sidebar */
+    max-width: 150px; 
     gap: 10px;
-    height: 100%; 
     justify-content: space-between; /* Space items between the start and end */
 }
 
@@ -52,8 +51,9 @@
     border-radius: 5px;
     text-align: center;
     font-size: 14px;
-    margin-top: auto; /* Pushes these items to the bottom */
+    margin-top: auto; 
 }
+
 
 .roomSidebarCopyBtn {
     font-size: 75%;
@@ -92,6 +92,7 @@
 
 .roomSidebarUsersWrapper {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -131,13 +132,14 @@
   }
 .runCodeBtn {
     padding: 10px 20px;
+    margin-top: auto;
     background-color: #28a745;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    align-self: flex-start;
+    
   }
   
   .runCodeBtn:disabled {
@@ -148,7 +150,8 @@
     margin-top: 5px;
     padding: 10px;
     background-color: #282c34;
-    border-radius: 8px;
+    border-radius: 2px;
+    border: 1px solid white;
     color: white;
     white-space: pre-wrap; /* To wrap long lines */
     word-wrap: break-word;
