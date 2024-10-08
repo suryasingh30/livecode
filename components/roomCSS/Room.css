@@ -4,23 +4,36 @@
     gap: 10px;
     min-height: 85vh;
     padding: 10px 10px 20px;
-  
+    z-index: 0; 
+    position: relative; /* Ensure z-index works */
 }
 
 .roomSidebar {
     display: flex;
     flex-direction: column;
-    max-width: 150px;
+    max-width: 150px; /* Set a max width for sidebar */
     gap: 10px;
+    height: 100%; 
+    justify-content: space-between; /* Space items between the start and end */
 }
-.roomCodeEditor {
-    flex: 1; /* Take up the remaining space */
-    width: calc(100% - 150px); /*Make the editor take up more space */
-   
+
+.editorContainer {
+    height: 650px; /* Default height for larger screens */
+    overflow: auto;
+    border: 1px solid #fffcfc;
 }
+
+/* Media query for small screens */
+@media (max-width: 700px) { /* You can adjust the breakpoint as needed */
+    .editorContainer {
+        height: 500px; /* Height for small screens */
+    }
+}
+
+
 .languageFieldWrapper {
     padding: 2px 6px;
-    background-color:white;
+    background-color: white;
     border-radius: 5px;
 }
 
@@ -33,14 +46,15 @@
     text-transform: capitalize;
 }
 
-
-.meetingInfo, .meetingTime {
-   
+.meetingInfo,
+.meetingTime {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     font-size: 14px;
+    margin-top: auto; /* Pushes these items to the bottom */
 }
+
 .roomSidebarCopyBtn {
     font-size: 75%;
     font-weight: bold;
@@ -53,6 +67,7 @@
     cursor: pointer;
     transition: all 0.45s ease-in-out 0.05s;
 }
+
 .roomSidebarCopyBtn:hover {
     color: black;
     background-color: white;
@@ -69,6 +84,7 @@
     cursor: pointer;
     transition: all 0.45s ease-in-out 0.05s;
 }
+
 .roomSidebarBtn:hover {
     color: white;
     background-color: black;
@@ -99,7 +115,6 @@
     min-height: 30px;
     padding: 5px;
     font-size: small;
-
     display: grid;
     place-items: center;
 }
@@ -109,20 +124,35 @@
     font-size: small;
 }
 
-@media screen and (min-width: 991px) {
+/* Media queries for responsiveness */
+@media screen and (min-width: 990px) {
     .room {
-        flex-direction: row;
+        flex-direction: row; /* Horizontal layout for larger screens */
     }
 
     .roomSidebar {
-        flex: 0.25;
+        flex: 0.25; /* Take up 25% of the space */
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .room {
+        flex-direction: column; /* Stack elements vertically */
     }
 
-    .roomSidebar > *:nth-child(2) {
-        margin-top: auto;
+    .roomSidebar {
+        max-width: none; /* Remove max width */
+        flex: none; /* Reset flex to avoid pushing other elements */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .languageFieldWrapper {
+        width: 100%; /* Make language selector full width */
     }
 
-    .roomCodeEditor {
-        flex: 0.75;
+    .roomSidebarCopyBtn,
+    .roomSidebarBtn {
+        width: 100%; /* Make buttons full width */
     }
 }
