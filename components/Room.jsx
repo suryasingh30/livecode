@@ -21,9 +21,11 @@ export default function Room({ socket, username, meetingId, useRouter}) {
   const [fetchedCode, setFetchedCode] = useState("");
   const [language, setLanguage] = useState("javascript");
   const [codeKeybinding, setCodeKeybinding] = useState();
+  const [output, setOutput] = useState("");
+  const [isRunning, setIsRunning] = useState(false);
 
-  const languagesAvailable = ["javascript", "c_cpp"];
-  const codeKeybindingAvailable = ["default", "emacs"];
+  const languagesAvailable = ["javascript", "cpp"];
+  // const codeKeybindingAvailable = ["default", "emacs"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,6 +33,34 @@ export default function Room({ socket, username, meetingId, useRouter}) {
     }, 1000);
     return () => clearInterval(timer); // Clean up the interval
   }, []);
+  // code run api call
+  async function runCode() {
+    setIsRunning(true); // Set loading state
+    const PISTON_API_URL = "https://emkc.org/api/v2/piston/execute"; // Piston API endpoint
+
+    const payload = {
+      language,
+      version: "*", // Piston supports multiple versions, "*" indicates latest version
+      files: [{ content: fetchedCode }]
+    };
+
+    try {
+      const response = await fetch(PISTON_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      setOutput(result.run.stdout || result.run.stderr); // Display output or error
+    } catch (error) {
+      setOutput("Error executing the code");
+    } finally {
+      setIsRunning(false); // Reset loading state
+    }
+  }
 
   function onChange(newValue) {
     setFetchedCode(newValue);
@@ -147,6 +177,9 @@ export default function Room({ socket, username, meetingId, useRouter}) {
 
       
         </div>
+        <button onClick={runCode} className="runCodeBtn" disabled={isRunning}>
+          {isRunning ? "Running..." : "Run Code"}
+        </button>
         <div className="meetingInfo">
           <p><strong>Meeting ID:</strong> {meetingId}</p>
         </div>
@@ -159,6 +192,7 @@ export default function Room({ socket, username, meetingId, useRouter}) {
           Leave
         </button> */}
       </div>
+      <div className="editorWrapper">
 
       <AceEditor
         placeholder="Write code here"
@@ -184,6 +218,13 @@ export default function Room({ socket, username, meetingId, useRouter}) {
           $blockScrolling: true,
         }}
       />
+      
+
+        <div className="outputWindow">
+          <h3>Output:</h3>
+          <pre>{output || "Your output will be displayed here..."}</pre>
+        </div>
+        </div>
     </div>
   );
 }
