@@ -36,7 +36,7 @@ const teamMembers: TeamMemberProps[] = [
   {
     name: 'Prabjhot Singh',
     image: '/images/prabjhot.jpg',
-    linkedIn: 'https://www.linkedin.com/in/prabhjot-singh-39a4a1231/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    linkedIn: 'https://www.linkedin.com/in/prabhjot-singh-39a4a1231/',
     description: 'Hello! I am Prabjhot, a Web Developer and a programmer.',
   },
 ];
@@ -47,7 +47,12 @@ const TeamMember: React.FC<TeamMemberComponentProps> = ({ member }) => (
     <Image 
       src={member.image} 
       alt={member.name}
-      className="rounded-full"
+      style={{
+        width: '150px',
+        height: '150px',
+        borderRadius: '50%',
+        objectFit: 'cover'
+      }}
       width={128}
       height={128}
       priority
