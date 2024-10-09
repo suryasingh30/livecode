@@ -15,7 +15,7 @@ function Meeting({params: {id}} : {params: {id: string}}) {
   const { call, isCallLoading } = useGetCallById(id);
   const [isSetupComplete, setSetUpComplete] = useState(false);
 
-  console.log("From meeting: " + id);
+  // console.log("From meeting: " + id);
 
   if (!isLoaded || isCallLoading) 
     return <Loader />;

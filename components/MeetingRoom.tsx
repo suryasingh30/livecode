@@ -34,7 +34,7 @@ const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
   const username = user?.username ? user.username : 'Guest';
   // const meetingId = user?.id || 'Guest';
 
-  console.log("Meeting room: " + meetingId);
+  // console.log("Meeting room: " + meetingId);
 
   if (callingState !== CallingState.JOINED) return <Loader />;
 
@@ -66,7 +66,7 @@ const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
               />
                <span className="text-xl font-semibold">Interview Nest</span> */}
               <Socketwrapper username={username} meetingId={meetingId}>
-                <Room socket={Socketwrapper} username={username} meetingId={meetingId} useRouter = {useRouter}/>
+                <Room socket={Socketwrapper} username={username} meetingId={meetingId}/>
               </Socketwrapper>
             </div>
           </div>
