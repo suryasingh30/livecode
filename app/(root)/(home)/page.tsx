@@ -29,7 +29,7 @@ const Home: React.FC = () => {
           <div></div>
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-extrabold lg:text-4xl">{currentTime}</h1>
-            <p className="text-lg pl-3 font-medium text-sky-900 lg:text-xl mb--5">{currentDate}</p>
+            <p className="text-lg pl-0 font-medium text-sky-900 lg:text-xl mb--5">{currentDate}</p>
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ export default function Room({ socket, username, meetingId }) {
   const [output, setOutput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
 
-  const languagesAvailable = ["javascript", "cpp","java","python","c",];
+  const languagesAvailable = ["javascript","cpp","java","python","c",];
   // const codeKeybindingAvailable = ["default", "emacs"];
 
   useEffect(() => {
