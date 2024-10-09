@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function Navbar() {
   return (
 
-    <nav className='flex-between fixed z-50 w-full bg-[#0e2645] px-6 py-4 lg:px-10'>
+    <nav className='flex-between fixed z-50 w-full bg-[#0e2645] px-6 py-3 lg:px-10'>
       <Link href='/' className='flex items-center gap-2'>
       <Image
           src="/icons/logo1.svg"

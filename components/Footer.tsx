@@ -12,7 +12,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className='w-full bg-[rgba(14, 38, 69, 0.8)] p-3 text-white'>
+    <footer className='w-full bg-[rgba(14, 38, 69, 0.8)] p-3 text-white fixed bottom-0'>
       <div className='flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4'>
         <span className='text-center text-sm'>Copyright © 2024 Interview Nest</span>
         {footerLinks.map((link, index) => (
