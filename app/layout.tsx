@@ -40,7 +40,10 @@ export default function RootLayout({
             colorPrimary: '#0E78F9',
             colorBackground: '#1c1f2e',
             colorInputText: '#fff'
-          }
+          },
+          layout: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
         }}
       >
       <body

@@ -15,7 +15,7 @@ export default function Navbar() {
           height={38}
           alt='Interview Nest'
           className='max-sm:size-10'/>
-          <p className="text-[26px] font-extrabold text-white max-sm:hidden">
+          <p className="text-[26px] font-semibold text-[#ffffff] max-sm:hidden">
           Interview Nest
         </p>
       </Link>
