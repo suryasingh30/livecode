@@ -18,10 +18,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Live Code",
+  title: "Interview Nest",
   description: "Web Interview Platform",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logo1.svg'
   }
 };
 
@@ -40,7 +40,10 @@ export default function RootLayout({
             colorPrimary: '#0E78F9',
             colorBackground: '#1c1f2e',
             colorInputText: '#fff'
-          }
+          },
+          layout: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
         }}
       >
       <body

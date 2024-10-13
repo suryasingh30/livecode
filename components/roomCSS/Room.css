@@ -1,0 +1,196 @@
+.room {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 85vh;
+    padding: 10px 10px 20px;
+    z-index: 0; 
+    position: relative; /* Ensure z-index works */
+}
+
+.roomSidebar {
+    display: flex;
+    flex-direction: column;
+    max-width: 150px; 
+    gap: 10px;
+    justify-content: space-between; /* Space items between the start and end */
+}
+
+.editorContainer {
+    height: 650px; /* Default height for larger screens */
+    overflow: auto;
+    border: 1px solid #fffcfc;
+}
+
+/* Media query for small screens */
+@media (max-width: 700px) { /* You can adjust the breakpoint as needed */
+    .editorContainer {
+        height: 500px; /* Height for small screens */
+    }
+}
+
+
+.languageFieldWrapper {
+    padding: 2px 6px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.languageField {
+    padding: 6px 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+}
+
+.meetingInfo,
+.meetingTime {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; 
+}
+
+
+.roomSidebarCopyBtn {
+    font-size: 75%;
+    font-weight: bold;
+    padding: 8px 15px;
+    color: white;
+    background-color: #ffdd00;
+    border: 1px solid #ffdd00;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out 0.05s;
+}
+
+.roomSidebarCopyBtn:hover {
+    color: black;
+    background-color: white;
+}
+
+.roomSidebarBtn {
+    font-size: 75%;
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: white;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out 0.05s;
+}
+
+.roomSidebarBtn:hover {
+    color: white;
+    background-color: black;
+}
+
+.roomSidebarUsersWrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.roomSidebarUsers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.roomSidebarUsersEach {
+    display: grid;
+    justify-items: center;
+}
+
+.roomSidebarUsersEachAvatar {
+    color: white;
+    border-radius: 5px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 5px;
+    font-size: small;
+    display: grid;
+    place-items: center;
+}
+
+.roomSidebarUsersEachName {
+    font-weight: bold;
+    font-size: small;
+}
+.editorWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+.runCodeBtn {
+    padding: 10px 20px;
+    margin-top: auto;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    
+  }
+  
+  .runCodeBtn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  .outputWindow {
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #282c34;
+    border-radius: 2px;
+    border: 1px solid white;
+    color: white;
+    white-space: pre-wrap; /* To wrap long lines */
+    word-wrap: break-word;
+    max-height: 200px;
+    overflow-y: auto; /* Scrollable for large output */
+  }
+  
+  .outputWindow h3 {
+    margin-bottom: 10px;
+    color: #ffdd00; /* Optional: Heading color */
+  }
+@media screen and (min-width: 991px) {
+    .room {
+        flex-direction: row; /* Horizontal layout for larger screens */
+    }
+
+    .roomSidebar {
+        flex: 0.25; /* Take up 25% of the space */
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .room {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .roomSidebar {
+        max-width: none; /* Remove max width */
+        flex: none; /* Reset flex to avoid pushing other elements */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .languageFieldWrapper {
+        width: 100%; /* Make language selector full width */
+    }
+
+    .roomSidebarCopyBtn,
+    .roomSidebarBtn {
+        width: 100%; /* Make buttons full width */
+    }
+}

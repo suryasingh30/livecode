@@ -1,9 +1,10 @@
+import Layout from "@/components/SignIn_SignUp";
 import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
-    <main className="flex h-screen w0full items-center justify-center">
-        <SignUp/>
-    </main>
-  )
+    <Layout>
+      <SignUp />
+    </Layout>
+  );
 }
