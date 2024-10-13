@@ -29,7 +29,6 @@ export default function SocketWrapper({
   children,
   username,
   meetingId,
-  onError,
 }: SocketWrapperProps) {
   const socket: Socket = io("https://spotted-colorful-carbon.glitch.me", {
     path: "/socket.io/",
