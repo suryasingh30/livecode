@@ -1,6 +1,6 @@
 import React, { useEffect, ReactNode } from "react";
 import { io, Socket } from "socket.io-client";
-import { toast } from "@/hooks/use-toast"; // Ensure this import is correct
+// import { toast } from "@/hooks/use-toast"; // Ensure this import is correct
 
 interface SocketWrapperProps {
   children: ReactNode;
