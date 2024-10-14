@@ -186,7 +186,7 @@
 
 @media screen and (max-width: 576px) {
     .languageFieldWrapper {
-        width: 100%; /* Make language selector full width */
+        width: 35%; /* Make language selector full width */
     }
 
     .roomSidebarCopyBtn,
