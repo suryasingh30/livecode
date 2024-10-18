@@ -7,92 +7,97 @@ import {
   PaginatedGridLayout,
   useCallStateHooks,
 } from '@stream-io/video-react-sdk';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Socketwrapper from '@/components/SocketWrapper';
 import Room from '@/components/Room';
-import { useUser } from '@clerk/nextjs'
+import { useUser } from '@clerk/nextjs';
 import { Loader, Users } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import EndCallButton from './EndCallButton';
-
-// type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
+import Image from 'next/image';
 
 interface MeetingRoomProps {
-  meetingId: string; 
+  meetingId: string;
 }
 
 const MeetingRoom: React.FC<MeetingRoomProps> = ({ meetingId }) => {
   const { user } = useUser();
   const searchParams = useSearchParams();
-  const isPersonalRoom = !!searchParams.get('personal');
-  // const [layout, setLayout] = useState<CallLayoutType>('grid')
+  const isPersonalRoom = Boolean(searchParams.get('personal'));
   const [showParticipants, setShowParticipants] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState(false); // State for animation
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
   const router = useRouter();
 
-  const username = user?.username ? user.username : 'Guest';
-  // const meetingId = user?.id || 'Guest';
+  const username = user?.username || 'Guest';
 
-  console.log("Meeting room: " + meetingId);
+  useEffect(() => {
+    // Add a delay to trigger animation for Users button
+    const timeout = setTimeout(() => setButtonVisible(true), 500);
+    return () => clearTimeout(timeout);
+  }, []);
 
   if (callingState !== CallingState.JOINED) return <Loader />;
 
   return (
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
-      {/* top bar */}
-      <header className="fixed top-0 left-0 right-0 bg-gray-900 p-1  flex items-center justify-between z-10"> 
-      <div className="flex items-center ml-4 space-x-3">
-          <img
-            src="/icons/logo1.svg" 
+      {/* Top bar */}
+      <header className="fixed top-0 left-0 right-0 bg-gray-900 p-3 flex items-center justify-between z-10">
+        <div className="flex items-center ml-4 space-x-3">
+          <Image
+            src="/icons/logo1.svg"
             alt="Logo"
-            className="h-10 w-10 object-contain" // size of the logo here
+            height={38}
+            width={38}
+            className="object-contain"
           />
           <span className="text-xl font-semibold">Interview Nest</span>
         </div>
-       
       </header>
-      <div className="relative flex size-full items-center mt-5 ">
-        {/* Grid layout for meeting room */}
-        <div className="flex size-full max-w-[1300px] items-center grid grid-cols-5 gap-4">
-          {/* Left Side (4x3 Grid) IDE */}
-          <div className="col-span-4 row-span-4 bg-gray-800 rounded-lg p-4">
-            {/* ide here */}
-            <div>
-              <Socketwrapper username={username} meetingId={meetingId}>
-                <Room socket={Socketwrapper} username={username} meetingId={meetingId}/>
-              </Socketwrapper>
-            </div>
-          </div>
 
-          {/* Right Side (5x2 Grid) for participants */}
-          <div className="col-span-1 row-span-5 flex flex-col gap-4">
-            {/* Each participant will take a 1x2 grid space */}
-            <PaginatedGridLayout />
-          </div>
+      <div className="relative flex flex-col md:flex-row h-[calc(100vh-86px)]">
+        {/* Left Side (Socketwrapper) - 3/4 width with margin */}
+        <div className="w-full md:w-3/4 bg-gray-800 rounded-lg p-4 mt-8 ml-2">
+          <Socketwrapper username={username} meetingId={meetingId}>
+            <Room socket={Socketwrapper} username={username} meetingId={meetingId} />
+          </Socketwrapper>
         </div>
 
-        <div
-          className={cn('h-[calc(100vh-86px)] hidden ml-2', {
-            'show-block': showParticipants,
-          })}
-        >
-          <CallParticipantsList onClose={() => setShowParticipants(false)} />
+        {/* Right Side (PaginatedGridLayout) */}
+        <div className="w-full md:w-1/4 flex flex-col gap-4">
+          <PaginatedGridLayout />
         </div>
       </div>
 
       {/* Call controls at the bottom */}
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
-        <CallControls onLeave={() => router.push(`/`)} />
+        <CallControls onLeave={() => router.push('/')} />
         <CallStatsButton />
         <button
           onClick={() => setShowParticipants((prev) => !prev)}
+          className={`p-2 transition-transform duration-500 ${
+            buttonVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
         >
           <div className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
             <Users size={20} className="text-white" />
           </div>
         </button>
         {!isPersonalRoom && <EndCallButton />}
+      </div>
+
+      {/* Participants list overlay with sliding effect */}
+      <div
+        className={cn(
+          'absolute top-0 right-0 h-full w-full md:w-1/4 bg-gray-800 z-20 transition-transform duration-500',
+          {
+            'translate-x-0': showParticipants,
+            'translate-x-full': !showParticipants,
+          }
+        )}
+      >
+        <CallParticipantsList onClose={() => setShowParticipants(false)} />
       </div>
     </section>
   );

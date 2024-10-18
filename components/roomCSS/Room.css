@@ -149,14 +149,14 @@
   .outputWindow {
     margin-top: 5px;
     padding: 10px;
-    background-color: #282c34;
+    background-color: #282A36;
     border-radius: 2px;
     border: 1px solid white;
     color: white;
+    height: 20%;
     white-space: pre-wrap; /* To wrap long lines */
     word-wrap: break-word;
-    max-height: 200px;
-    overflow-y: auto; /* Scrollable for large output */
+    overflow-y: auto; 
   }
   
   .outputWindow h3 {
@@ -186,7 +186,7 @@
 
 @media screen and (max-width: 576px) {
     .languageFieldWrapper {
-        width: 100%; /* Make language selector full width */
+        width: 35%; /* Make language selector full width */
     }
 
     .roomSidebarCopyBtn,
